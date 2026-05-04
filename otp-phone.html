@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Phone Verification</title>
+  <title>Phone Verification - M.I.A Hub</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -16,15 +16,33 @@
 
   <div class="center-screen">
     <div class="card">
-      <div class="brand">Phone Verification</div>
-      <h1>Send OTP to Phone Number</h1>
-      <p class="muted">Enter your phone number to receive a one-time verification code</p>
+
+      <!-- Intro -->
+      <div class="page-intro">
+        <div class="page-intro-logo">
+          <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" width="28" height="28">
+            <path d="M5 28V8L12 17L18 8L24 17L31 8V28" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="5"  cy="8"  r="1.8" fill="white"/>
+            <circle cx="18" cy="8"  r="1.8" fill="white"/>
+            <circle cx="31" cy="8"  r="1.8" fill="white"/>
+            <circle cx="5"  cy="28" r="1.8" fill="white"/>
+            <circle cx="31" cy="28" r="1.8" fill="white"/>
+            <line x1="5"  y1="8" x2="5"  y2="28" stroke="white" stroke-width="1" opacity="0.4"/>
+            <line x1="31" y1="8" x2="31" y2="28" stroke="white" stroke-width="1" opacity="0.4"/>
+          </svg>
+        </div>
+        <h2>Sign in to your account</h2>
+        <p>Choose your preferred method below</p>
+      </div>
 
       <!-- Tab Switcher -->
       <div class="tab-switcher">
         <a href="otp-email.html" class="tab-btn">Email</a>
         <a href="otp-phone.html" class="tab-btn active">Phone</a>
       </div>
+
+      <div class="brand">Phone Verification</div>
+      <p class="muted">Enter your phone number to receive a one-time verification code</p>
 
       <!-- Phone Input -->
       <div class="phone-input-container">
@@ -56,23 +74,16 @@
       </button>
 
       <!-- Messages -->
-      <div id="error-message" style="color: #dc2626; font-size: 14px; margin-top: 10px; display: none;"></div>
-      <div id="success-message" style="color: #22c55e; font-size: 14px; margin-top: 10px; display: none;"></div>
+      <div id="error-message" class="feedback-error"></div>
+      <div id="success-message" class="feedback-success"></div>
 
 
       <!-- Divider -->
-      <div
-        style="display: flex; align-items: center; gap: 16px; margin: 24px 0; color: #6b7280; font-size: 13px; text-transform: uppercase;">
-        <div style="flex: 1; height: 1px; background: rgba(255, 255, 255, 0.1);"></div>
-        or continue with
-        <div style="flex: 1; height: 1px; background: rgba(255, 255, 255, 0.1);"></div>
-      </div>
-
+      <div class="divider">or continue with</div>
 
       <!-- Google Button -->
-      <a href="google-login.html"
-        style="display: flex; align-items: center; justify-content: center; gap: 12px; padding: 14px 24px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 10px; color: #ffffff; font-size: 15px; font-weight: 500; text-decoration: none; transition: all 0.3s ease;">
-        <img src="assets/Google_Favicon_2025.svg.webp" alt="Google" style="width: 20px; height: 20px;">
+      <a href="google-login.html" class="btn-google">
+        <img src="assets/Google_Favicon_2025.svg.webp" alt="Google" width="20" height="20">
         Continue with Google
       </a>
 

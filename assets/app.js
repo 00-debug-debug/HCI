@@ -1081,3 +1081,70 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
+// Google Login functions for google-login.html
+(function () {
+  if (!window.location.pathname.includes("google-login.html")) return;
+
+  const hardcodedEmail = "tagolimot.mia00@gmail.com";
+  const hardcodedPassword = "Isosceles21";
+
+  document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("google-email").addEventListener("input", function () {
+      document.getElementById("error-message").style.display = "none";
+    });
+    document.getElementById("google-password").addEventListener("input", function () {
+      document.getElementById("error-message").style.display = "none";
+    });
+  });
+
+  window.validateGoogleLogin = function () {
+    const email = document.getElementById("google-email").value;
+    const password = document.getElementById("google-password").value;
+    const errorMessage = document.getElementById("error-message");
+    const signinBtn = document.getElementById("signin-btn");
+    const loader = document.getElementById("google-loader");
+
+    if (email === hardcodedEmail && password === hardcodedPassword) {
+      errorMessage.style.display = "none";
+      signinBtn.style.display = "none";
+      loader.style.display = "block";
+
+      localStorage.setItem("verified_user", email);
+      localStorage.setItem("auth_provider", "google");
+      localStorage.setItem("user_name", "Demo User");
+
+      setTimeout(() => {
+        window.location.href = "mailbox-clean.html";
+      }, 2000);
+    } else {
+      errorMessage.textContent = "Invalid email or password. Please use the hardcoded credentials.";
+      errorMessage.style.display = "block";
+
+      document.getElementById("google-email").value = "";
+      document.getElementById("google-email").style.borderColor = "";
+      document.getElementById("google-email").style.boxShadow = "";
+      document.getElementById("google-password").value = "";
+      document.getElementById("google-password").style.borderColor = "";
+      document.getElementById("google-password").style.boxShadow = "";
+
+      const card = document.querySelector(".card");
+      card.style.animation = "shake 0.5s ease-in-out";
+      setTimeout(() => { card.style.animation = ""; }, 500);
+    }
+  };
+})();
+
+(function () {
+  const container = document.getElementById("particles");
+  if (!container) return;
+  for (let i = 0; i < 50; i++) {
+    const particle = document.createElement("div");
+    particle.className = "particle";
+    particle.style.left = Math.random() * 100 + "%";
+    particle.style.top = Math.random() * 100 + "%";
+    particle.style.animationDelay = Math.random() * 15 + "s";
+    particle.style.animationDuration = (15 + Math.random() * 10) + "s";
+    container.appendChild(particle);
+  }
+})();
+

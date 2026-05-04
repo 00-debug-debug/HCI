@@ -30,7 +30,7 @@
         </p>
 
         <div class="cta-container">
-            <a href="selector-login.html" class="btn-primary">
+            <a href="otp-email.html" class="btn-primary">
                 Get Started with M.I.A
             </a>
         </div>
@@ -40,27 +40,10 @@
         <div>© 2026 v1.2.0 — Powered by M.I.A Hub</div>
     </div>
 
-    <script>
-        // Create particles
-        function createParticles() {
-            const container = document.getElementById('particles');
-            for (let i = 0; i < 50; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.top = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 15 + 's';
-                particle.style.animationDuration = (15 + Math.random() * 10) + 's';
-                container.appendChild(particle);
-            }
-        }
-
-        // Initialize
-        createParticles();
-    </script>
+    <script src="assets/app.js"></script>
 
     <!-- AI Chatbot Floating Button -->
-    <a href="ai-chatbot.html" class="ai-chatbot-btn" title="Ask MIA AI">
+    <a href="ai-chatbot.html?from=index.html" class="ai-chatbot-btn" title="Ask MIA AI">
         <div class="ai-logo">
             <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <!-- Robotic M Letter -->
