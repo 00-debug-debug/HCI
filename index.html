@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M.I.A Hub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/styles.css">
+</head>
+
+<body>
+    <!-- Animated Background -->
+    <div class="bg-animation">
+        <div class="network-lines"></div>
+        <div class="hexagons"></div>
+        <div class="glow-orb"></div>
+        <div class="glow-orb"></div>
+        <div class="glow-orb"></div>
+        <div class="particles" id="particles"></div>
+
+    <!-- Main Content -->
+    <div class="hero">
+        <div class="hero-badge">𝗠.𝗜.𝗔 𝗛𝘂𝗯</div>
+        <h1 class="hero-title">Welcome to Your Universal Assistant</h1>
+        <p class="hero-description">
+            M.I.A is your powerful AI companion, unifying your verification, mailbox, and advanced AI tools to redefine your productivity.
+        </p>
+
+        <div class="cta-container">
+            <a href="selector-login.html" class="btn-primary">
+                Get Started with M.I.A
+            </a>
+        </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <div>© 2026 v1.2.0 — Powered by M.I.A Hub</div>
+    </div>
+
+    <script>
+        // Create particles
+        function createParticles() {
+            const container = document.getElementById('particles');
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 15 + 's';
+                particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+                container.appendChild(particle);
+            }
+        }
+
+        // Initialize
+        createParticles();
+    </script>
+
+    <!-- AI Chatbot Floating Button -->
+    <a href="ai-chatbot.html" class="ai-chatbot-btn" title="Ask MIA AI">
+        <div class="ai-logo">
+            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Robotic M Letter -->
+                <path d="M8 38V10L16 22L24 10L32 22L40 10V38" stroke="url(#ai-gradient)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                <!-- Circuit lines -->
+                <circle cx="8" cy="10" r="2" fill="#22c55e"/>
+                <circle cx="24" cy="10" r="2" fill="#22c55e"/>
+                <circle cx="40" cy="10" r="2" fill="#22c55e"/>
+                <circle cx="8" cy="38" r="2" fill="#22c55e"/>
+                <circle cx="40" cy="38" r="2" fill="#22c55e"/>
+                <!-- Connection lines -->
+                <line x1="8" y1="10" x2="8" y2="38" stroke="#22c55e" stroke-width="1" opacity="0.5"/>
+                <line x1="40" y1="10" x2="40" y2="38" stroke="#22c55e" stroke-width="1" opacity="0.5"/>
+                <defs>
+                    <linearGradient id="ai-gradient" x1="8" y1="10" x2="40" y2="38" gradientUnits="userSpaceOnUse">
+                        <stop stop-color="#22c55e"/>
+                        <stop offset="1" stop-color="#16a34a"/>
+                    </linearGradient>
+                </defs>
+            </svg>
+        </div>
+        <span class="ai-tooltip">Ask AI</span>
+    </a>
+
+</body>
+
+</html>

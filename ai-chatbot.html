@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Chatbot - M.I.A Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
+  <style>
+    .back-arrow:hover {
+      background: rgba(255, 255, 255, 0.15) !important;
+      transform: translateX(-2px);
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="chatbot-only-page">
+    <main class="chat-panel">
+      <header class="chat-header">
+        <a href="javascript:void(0)" onclick="goBack()" class="back-arrow"
+          style="display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 12px; background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.1); color: #ffffff; text-decoration: none; transition: all 0.3s ease; margin-right: 12px;">
+
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 12H5M12 19l-7-7 7-7" />
+          </svg>
+
+        </a>
+        <div class="ai-orb">🤖</div>
+        <div>
+          <h2>M.I.A AI Assistant</h2>
+          <small>Online • Ready to help</small>
+        </div>
+      </header>
+
+      <section class="chat-window" id="chatWindow">
+        <div class="chat-message bot show">
+          <div class="avatar">🤖</div>
+          <div class="bubble">
+            Hi! I'm your M.I.A AI Assistant. How can I help you today?
+          </div>
+        </div>
+      </section>
+
+      <footer class="chat-input-bar">
+        <input id="chatInput" placeholder="Type your message..." onkeydown="handleChatKey(event)">
+        <div id="validation-message" style="color: #0ff965; font-size: 12px; margin-top: 5px; display: none;"></div>
+        <button onclick="sendChat()">Send</button>
+      </footer>
+    </main>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+
+      const input = document.getElementById("chatInput");
+      const validation = document.getElementById("validation-message");
+      const chatWindow = document.getElementById("chatWindow");
+      const sendButton = document.querySelector(".send-button");
+
+      if (!input || !chatWindow) return;
+
+      /* =========================
+         INPUT VALIDATION
+      ========================= */
+      input.addEventListener("input", () => {
+        const message = input.value.trim();
+
+        if (message.length === 0) {
+          validation.style.display = "none";
+          resetUI();
+          return;
+        }
+
+        validation.style.display = "block";
+
+        if (message.length >= 3) {
+          //validation.textContent = "✓ Message ready to send";
+          validation.style.color = "#22c55e";
+
+          input.style.borderColor = "#22c55e";
+          input.style.boxShadow = "0 0 0 3px rgba(34, 197, 94, 0.2)";
+
+          if (sendButton) {
+            sendButton.style.background = "linear-gradient(135deg, #22c55e, #16a34a)";
+          }
+
+        } else {
+          //validation.textContent = "Type at least 3 characters...";
+          validation.style.color = "#f59e0b";
+
+          input.style.borderColor = "#f59e0b";
+          input.style.boxShadow = "0 0 0 3px rgba(245, 158, 11, 0.2)";
+
+          if (sendButton) {
+            sendButton.style.background = "#444";
+          }
+        }
+      });
+
+      /* =========================
+         ENTER KEY SEND
+      ========================= */
+      input.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+          sendChat();
+        }
+      });
+
+      /* =========================
+         SEND CHAT (MAIN FUNCTION)
+      ========================= */
+      window.sendChat = function () {
+
+        const message = input.value.trim();
+
+        if (message.length < 3) {
+          //validation.textContent = "✗ Please type at least 3 characters";
+          validation.style.display = "block";
+          validation.style.color = "#dc2626";
+          shake(input);
+          return;
+        }
+
+        // USER MESSAGE
+        addMessage("user", message);
+
+        // RESET INPUT
+        input.value = "";
+        resetUI();
+
+        // BOT RESPONSE (SIMULATED)
+        setTimeout(() => {
+          addMessage("bot", `${message} too`);
+        }, 800);
+      };
+
+      /* =========================
+         ADD MESSAGE FUNCTION
+      ========================= */
+      function addMessage(type, text) {
+        const msg = document.createElement("div");
+        msg.className = `chat-message ${type} show`;
+
+        msg.innerHTML = `
+      <div class="avatar">${type === "user" ? "👤" : "🤖"}</div>
+      <div class="bubble">${text}</div>
+    `;
+
+        chatWindow.appendChild(msg);
+        chatWindow.scrollTop = chatWindow.scrollHeight;
+      }
+
+      /* =========================
+         RESET UI
+      ========================= */
+      function resetUI() {
+        validation.style.display = "none";
+        input.style.borderColor = "";
+        input.style.boxShadow = "";
+
+        if (sendButton) {
+          sendButton.style.background = "";
+        }
+      }
+
+      /* =========================
+         SHAKE EFFECT
+      ========================= */
+      function shake(el) {
+        el.style.animation = "shake 0.4s";
+
+        setTimeout(() => {
+          el.style.animation = "";
+        }, 400);
+      }
+
+    });
+
+    /* =========================
+       SHAKE ANIMATION CSS
+    ========================= */
+    const style = document.createElement("style");
+    style.textContent = `
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-6px); }
+  50% { transform: translateX(6px); }
+  75% { transform: translateX(-4px); }
+}
+`;
+    document.head.appendChild(style);
+
+    function goBack() {
+      // Try URL parameter
+      const params = new URLSearchParams(window.location.search);
+      let from = params.get("from");
+
+      // Fallback to localStorage
+      if (!from) {
+        from = localStorage.getItem("chat_from");
+      }
+
+      // Final fallback
+      if (!from) {
+        from = "index.html";
+      }
+
+      window.location.href = from;
+    }
+  </script>
+
+</body>
+
+</html>

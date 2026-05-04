@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OTP Verification - M.I.A Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+
+<div class="center-screen">
+  <div class="card">
+    <div class="brand">OTP Verification</div>
+    <h1>Validate OTP</h1>
+    <p class="muted">
+      Code sent to: <strong id="otpTarget"></strong>
+    </p>
+
+    <div class="otp-box">
+      <input maxlength="1" class="otp" id="otp1">
+      <input maxlength="1" class="otp" id="otp2">
+      <input maxlength="1" class="otp" id="otp3">
+      <input maxlength="1" class="otp" id="otp4">
+      <input maxlength="1" class="otp" id="otp5">
+      <input maxlength="1" class="otp" id="otp6">
+    </div>
+
+    <div id="error-message" style="color: #dc2626; font-size: 14px; margin-top: 10px; display: none;"></div>
+    <div id="success-message" style="color: #22c55e; font-size: 14px; margin-top: 10px; display: none;"></div>
+
+    <button class="btn primary" onclick="validateOtp()">Verify OTP</button>
+    <a class="link" href="index.html">Back</a>
+    <p id="message" class="muted center"></p>
+  </div>
+</div>
+
+<script src="assets/app.js"></script>
+</body>
+</html>
