@@ -1131,7 +1131,7 @@ document.addEventListener('DOMContentLoaded', () => {
         window.location.href = "mailbox.html";
       }, 2000);
     } else {
-      errorMessage.textContent = "Invalid email or password. Please use the hardcoded credentials.";
+      errorMessage.textContent = "Invalid email or password. Please enter valid credentials to proceed.";
       errorMessage.style.display = "block";
 
       document.getElementById("google-email").value = "";
