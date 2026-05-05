@@ -42,7 +42,7 @@ function validateOtp() {
         }, 3000);
     } else {
         // OTP doesn't match - show error
-        errorMessage.textContent = "Invalid OTP. Please use the hardcoded code: 123456";
+        errorMessage.textContent = "Invalid OTP. Please enter the correct one-time password.";
         errorMessage.style.display = "block";
         successMessage.style.display = "none";
         
