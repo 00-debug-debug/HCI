@@ -38,7 +38,7 @@ function validateOtp() {
         
         // Redirect to mailbox after a delay
         setTimeout(() => {
-            window.location.href = "mailbox-clean.html";
+            window.location.href = "mailbox.html";
         }, 3000);
     } else {
         // OTP doesn't match - show error
@@ -106,30 +106,16 @@ document.addEventListener("DOMContentLoaded", () => {
                 
                 // Clear error states when user starts typing
                 clearErrorStates();
-                
-                // Get current OTP value
-                let currentOTP = "";
-                document.querySelectorAll('.otp').forEach(otpInput => {
-                    currentOTP += otpInput.value;
-                });
-                
-                // Only clear error states on input, don't show success validation
-                if (currentOTP.length > 0) {
-                    // Remove green border if OTP is incomplete
-                    document.querySelectorAll('.otp').forEach(otpInput => {
-                        if (otpInput.value === "") {
-                            otpInput.style.borderColor = "";
-                            otpInput.style.boxShadow = "";
-                        }
-                    });
+
+                // Update border color per box
+                if (value.length === 1) {
+                    this.style.borderColor = "#22c55e";
+                    this.style.boxShadow = "0 0 0 3px rgba(34, 197, 94, 0.2)";
                 } else {
-                    // Reset all borders
-                    document.querySelectorAll('.otp').forEach(otpInput => {
-                        otpInput.style.borderColor = "";
-                        otpInput.style.boxShadow = "";
-                    });
+                    this.style.borderColor = "";
+                    this.style.boxShadow = "";
                 }
-                
+
                 // Auto-focus next input
                 if (value.length === 1 && index < 5) {
                     document.getElementById(`otp${index + 2}`).focus();
@@ -268,9 +254,9 @@ document.addEventListener("DOMContentLoaded", () => {
                         successMessage.style.display = "none";
                         errorMessage.textContent = "Invalid email format. Use: user@domain.com";
                         errorMessage.style.display = "block";
-                        errorMessage.style.color = "#f59e0b";
-                        this.style.borderColor = "#f59e0b";
-                        this.style.boxShadow = "0 0 0 3px rgba(245, 158, 11, 0.2)";
+                        errorMessage.style.color = "#ef4444";
+                        this.style.borderColor = "#ef4444";
+                        this.style.boxShadow = "0 0 0 3px rgba(239, 68, 68, 0.2)";
                     }
                 } else {
                     successMessage.style.display = "none";
@@ -484,6 +470,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (!phoneInput.value.trim()) {
         continueButton.classList.remove("active");
+        phoneInput.style.borderColor = "";
+        phoneInput.style.boxShadow = "";
         return;
       }
 
@@ -494,10 +482,14 @@ document.addEventListener("DOMContentLoaded", () => {
         continueButton.classList.add("active");
         successMessage.textContent = "";
         successMessage.style.display = "block";
+        phoneInput.style.borderColor = "#22c55e";
+        phoneInput.style.boxShadow = "0 0 0 3px rgba(34, 197, 94, 0.2)";
       } else {
         continueButton.classList.remove("active");
         errorMessage.textContent = validation.message || "Please enter a valid phone number";
         errorMessage.style.display = "block";
+        phoneInput.style.borderColor = "#ef4444";
+        phoneInput.style.boxShadow = "0 0 0 3px rgba(239, 68, 68, 0.2)";
       }
     }
 
@@ -675,7 +667,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Expose sendPhoneOtp to window
     window.sendPhoneOtp = sendPhoneOtp;
 
-// Logout function for mailbox-clean.html
+// Logout function for mailbox.html
 window.logout = function() {
     // Clear all session data
     localStorage.removeItem("verified_user");
@@ -877,7 +869,7 @@ window.loginWithGoogle = function() {
   localStorage.setItem("auth_provider", googleUser.provider);
   localStorage.setItem("user_name", googleUser.name);
 
-  window.location.href = "mailbox-clean.html";
+  window.location.href = "mailbox.html";
 }
 
 window.openLogoutModal = function () {
@@ -897,7 +889,7 @@ window.confirmLogout = function () {
   window.location.href = "index.html";
 };
 
-// Mailbox functions for mailbox-clean.html
+// Mailbox functions for mailbox.html
 let currentFolder = 'inbox';
 
 window.filterFolder = function(folder) {
@@ -1076,7 +1068,7 @@ document.addEventListener('DOMContentLoaded', () => {
     logout: typeof window.logout
   });
   
-  if (window.location.pathname.includes('mailbox-clean.html')) {
+  if (window.location.pathname.includes('mailbox.html')) {
     window.renderEmails();
   }
 });
@@ -1089,11 +1081,32 @@ document.addEventListener('DOMContentLoaded', () => {
   const hardcodedPassword = "Isosceles21";
 
   document.addEventListener("DOMContentLoaded", function () {
-    document.getElementById("google-email").addEventListener("input", function () {
+    const emailEl = document.getElementById("google-email");
+    const passEl = document.getElementById("google-password");
+
+    emailEl.addEventListener("input", function () {
       document.getElementById("error-message").style.display = "none";
+      if (this.value.length === 0) {
+        this.style.borderColor = "";
+        this.style.boxShadow = "";
+      } else if (validateEmailFormat(this.value)) {
+        this.style.borderColor = "#22c55e";
+        this.style.boxShadow = "0 0 0 3px rgba(34, 197, 94, 0.2)";
+      } else {
+        this.style.borderColor = "#ef4444";
+        this.style.boxShadow = "0 0 0 3px rgba(239, 68, 68, 0.2)";
+      }
     });
-    document.getElementById("google-password").addEventListener("input", function () {
+
+    passEl.addEventListener("input", function () {
       document.getElementById("error-message").style.display = "none";
+      if (this.value.length === 0) {
+        this.style.borderColor = "";
+        this.style.boxShadow = "";
+      } else {
+        this.style.borderColor = "#22c55e";
+        this.style.boxShadow = "0 0 0 3px rgba(34, 197, 94, 0.2)";
+      }
     });
   });
 
@@ -1114,7 +1127,7 @@ document.addEventListener('DOMContentLoaded', () => {
       localStorage.setItem("user_name", "Demo User");
 
       setTimeout(() => {
-        window.location.href = "mailbox-clean.html";
+        window.location.href = "mailbox.html";
       }, 2000);
     } else {
       errorMessage.textContent = "Invalid email or password. Please use the hardcoded credentials.";
