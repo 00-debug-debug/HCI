@@ -139,8 +139,55 @@ document.addEventListener("DOMContentLoaded", () => {
         if (target) {
             target.textContent = localStorage.getItem("otp_target") || "Not specified";
         }
+
+        // Resend countdown
+        startResendCountdown();
     }
 });
+
+let resendTimer = null;
+
+function startResendCountdown() {
+    const btn = document.getElementById("resend-btn");
+    const countdown = document.getElementById("resend-countdown");
+    if (!btn || !countdown) return;
+
+    let seconds = 60;
+    btn.disabled = true;
+    btn.innerHTML = `Resend code in <span id="resend-countdown">${seconds}</span>s`;
+
+    clearInterval(resendTimer);
+    resendTimer = setInterval(() => {
+        seconds--;
+        const el = document.getElementById("resend-countdown");
+        if (el) el.textContent = seconds;
+        if (seconds <= 0) {
+            clearInterval(resendTimer);
+            btn.disabled = false;
+            btn.textContent = "Resend Code";
+        }
+    }, 1000);
+}
+
+window.resendOtp = function () {
+    const btn = document.getElementById("resend-btn");
+    if (btn && btn.disabled) return;
+
+    document.getElementById("error-message").style.display = "none";
+    document.getElementById("success-message").style.display = "none";
+
+    document.querySelectorAll(".otp").forEach(input => {
+        input.value = "";
+        input.disabled = false;
+        input.style.borderColor = "";
+        input.style.boxShadow = "";
+        input.style.backgroundColor = "";
+        input.style.cursor = "";
+    });
+    document.getElementById("otp1").focus();
+
+    startResendCountdown();
+};
 
 
 
