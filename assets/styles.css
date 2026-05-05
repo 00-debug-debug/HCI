@@ -516,7 +516,7 @@ h1 {
 }
 
 .feedback-error {
-  color: #dc2626;
+  color: #ef4444;
   font-size: 14px;
   margin-top: 10px;
   display: none;
@@ -873,10 +873,10 @@ textarea:focus {
 .phone-input-wrapper {
   display: flex;
   align-items: center;
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.1);
   border-radius: 16px;
   transition: all 0.3s ease;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);

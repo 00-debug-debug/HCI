@@ -487,6 +487,7 @@ document.addEventListener("DOMContentLoaded", () => {
       } else {
         continueButton.classList.remove("active");
         errorMessage.textContent = validation.message || "Please enter a valid phone number";
+        errorMessage.style.color = "#ef4444";
         errorMessage.style.display = "block";
         phoneInput.style.borderColor = "#ef4444";
         phoneInput.style.boxShadow = "0 0 0 3px rgba(239, 68, 68, 0.2)";
